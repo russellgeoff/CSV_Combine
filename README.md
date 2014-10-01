@@ -1,4 +1,9 @@
 CSV_Combine
 ===========
 
-Python script to combine a series of csv files into one Excel document
+##Description
+Python script to combine multiple CSV data files into one Excel document
+
+##Change Log
+###0.1
+-Initial Release
