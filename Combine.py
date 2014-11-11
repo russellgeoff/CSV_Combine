@@ -9,10 +9,10 @@ import csv
 import openpyxl
 import natsort
 
-filename = raw_input("What do you want the merged file to be called?")
+filename = raw_input("What do you want the merged file to be called? ")
 while filename == "":
-    print("Filename cannot be blank")
-    filename = raw_input("What do you want the merged file to be called?")
+    print("ERROR: Filename cannot be blank!")
+    filename = raw_input("What do you want the merged file to be called? ")
 
 #Sets up workbook & adds data summary sheet
 wb = openpyxl.Workbook()
