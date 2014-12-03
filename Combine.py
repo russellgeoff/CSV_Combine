@@ -24,9 +24,11 @@ summary_row = 1
 summary_ws_data = {
     'title': 'Data Summary',
     'col1_title': 'Sample',
-    'col1_formula': '%s',
+    'col1_formula': "='%s'!$B$1",
     'col2_title': 'Removal',
-    'col2_formula': "=MAX('%s'!C:C)"
+    'col2_formula': "=ABS(MIN('%s'!C:C))",
+    'col3_title': 'Notes',
+    'col3_formula': "='%s'!$B$2"
 }
 
 wb = openpyxl.Workbook()
@@ -34,7 +36,7 @@ ws_summary = wb.active
 ws_summary.title = summary_ws_data['title']
 ws_summary.cell(row=summary_row, column=1).value = summary_ws_data['col1_title']
 ws_summary.cell(row=summary_row, column=2).value = summary_ws_data['col2_title']
-# ws_summary.cell(row=summary_row, column=3).value = 'Removal'
+ws_summary.cell(row=summary_row, column=3).value = summary_ws_data['col3_title']
 
 #Gets list of all CSV files in the current directory and sorts them intelligently
 files = glob.glob(os.path.join('.', '*.csv'))
@@ -76,6 +78,9 @@ for csv_file in sortedFiles:
 
     ws_summary.cell(row=summary_row, column=2).value = summary_ws_data['col2_formula'] % ws.title
 
+    ws_summary.cell(row=summary_row, column=3).value = summary_ws_data['col3_formula'] % ws.title
+
+    
     # ws_summary.cell(row=summary_row, column=3).value = '=MAX(%s!C:C)' % ws.title
     # ws_summary.cell(row=summary_row, column=3).value = '=MAX(%s!C:C))' % ws.title
     print('Added %s' % tail)
